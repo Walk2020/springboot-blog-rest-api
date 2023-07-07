@@ -16,4 +16,6 @@ public interface PostService {
 
     void deletePostById(long id);
 
+    List<PostDto> getPostByCategory(Long categoryId);
+
 }
