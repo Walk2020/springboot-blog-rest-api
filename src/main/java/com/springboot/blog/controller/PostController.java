@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/posts")
 @Tag(
         name = "CRUD REST APIs for Post Resource"
 )
@@ -45,7 +44,7 @@ public class PostController {
             name = "Bear Authentication"
     )
     @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping
+    @PostMapping("/api/v1/posts")
     public ResponseEntity<PostDto> createPost(@Valid @RequestBody PostDto postDto){
         return new ResponseEntity<>(postService.createPost(postDto), HttpStatus.CREATED);
     }
@@ -59,7 +58,7 @@ public class PostController {
             responseCode = "200",
             description = "Http Status 200 SUCCESS"
     )
-    @GetMapping
+    @GetMapping("/api/v1/posts")
     //get all posts rest api
     public PostResponse getAllPosts(
             @RequestParam(value = "pageNo", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER, required = false) int pageNo,
@@ -79,7 +78,7 @@ public class PostController {
             responseCode = "200",
             description = "Http Status 200 SUCCESS"
     )
-    @GetMapping("/{id}")
+    @GetMapping("/api/v1/posts/{id}")
     //get post by ID api
     public ResponseEntity<PostDto> getPostById(@PathVariable(name = "id") long id){
         return new ResponseEntity<>(postService.getPostById(id), HttpStatus.OK);
@@ -96,7 +95,7 @@ public class PostController {
     @SecurityRequirement(
             name = "Bear Authentication"
     )
-    @PutMapping("/{id}")
+    @PutMapping("/api/v1/posts/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     //update post by ID api
     public ResponseEntity<PostDto> updatePostById(@Valid @RequestBody PostDto postDto, @PathVariable(name = "id") long id){
@@ -114,7 +113,7 @@ public class PostController {
     @SecurityRequirement(
             name = "Bear Authentication"
     )
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/api/v1/posts/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     //delete a post by ID api
     public ResponseEntity<String> deletePostById(@PathVariable(name = "id") long id){
@@ -123,7 +122,7 @@ public class PostController {
     }
 
     // Build Get Posts by Category REST API
-    @GetMapping("/category/{id}")
+    @GetMapping("/api/v1/posts/category/{id}")
     public ResponseEntity<List<PostDto>> getPostsByCategory(@PathVariable(name = "id") Long categoryId){
         List<PostDto> postDtos = postService.getPostByCategory(categoryId);
         return ResponseEntity.ok(postDtos);
