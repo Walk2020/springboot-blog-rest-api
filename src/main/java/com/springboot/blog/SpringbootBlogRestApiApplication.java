@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
+//http://localhost:8080/swagger-ui/index.html
 @OpenAPIDefinition(
 		info = @Info(
 				title = "Spring Boot Bolg App REST APIs",
