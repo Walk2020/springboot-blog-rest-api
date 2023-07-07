@@ -4,6 +4,7 @@ import com.springboot.blog.payload.JWTAuthResponse;
 import com.springboot.blog.payload.LoginDto;
 import com.springboot.blog.payload.RegisterDto;
 import com.springboot.blog.service.AuthService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/auth")
+@Tag(
+        name = "Authentication APIs"
+)
 public class AuthController {
 
     private AuthService authService;
